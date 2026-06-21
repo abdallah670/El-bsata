@@ -1,26 +1,42 @@
-using AutoMapper;
 using MediatR;
 using ElBsata.Application.Common.Interfaces;
-using ElBsata.Application.Orders.DTOs;
 using ElBsata.Domain.Entities;
+using System.Linq;
+using ElBsata.Application.Orders.DTOs;
 
 namespace ElBsata.Application.Orders.Queries;
 
 public class GetOrderDetailsHandler : IRequestHandler<GetOrderDetailsQuery, OrderDetailsDto>
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
 
-    public GetOrderDetailsHandler(IUnitOfWork unitOfWork, IMapper mapper)
+    public GetOrderDetailsHandler(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
-        _mapper = mapper;
     }
 
     public async Task<OrderDetailsDto> Handle(GetOrderDetailsQuery request, CancellationToken cancellationToken)
     {
-        var orders = await _unitOfWork.Orders.GetAllAsync(cancellationToken);
-        var order = orders.FirstOrDefault(o => o.Id == request.Id);
-        return order == null ? new OrderDetailsDto() : _mapper.Map<OrderDetailsDto>(order);
+        var order = await _unitOfWork.Orders.GetByIdAsync(request.Id, cancellationToken);
+          
+        return order is not null ? new OrderDetailsDto
+        {
+            Id = order.Id,
+            Customer = new CustomerInfoDto
+            {
+                Name = order.Customer.Name,
+                Phone = order.Customer.Phone,
+                Address = order.Customer.Address
+            },
+            Items = order.Items.Select(i => new CartItemDto
+            {
+                ProductId = i.Item.Id,
+                ProductName = i.Item.Name,
+                Price = i.Item.Price,
+                Quantity = i.Quantity
+            }).ToList(),
+            TotalPrice = order.TotalPrice,
+            CreatedAt = order.CreatedAt
+        } : null;
     }
 }
