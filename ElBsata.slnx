@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ElBsata.API/ElBsata.API.csproj" />
+  <Project Path="ElBsata.Application/ElBsata.Application.csproj" />
+  <Project Path="ElBsata.Domain/ElBsata.Domain.csproj" />
+  <Project Path="ElBsata.Infrastructure/ElBsata.Infrastructure.csproj" />
+</Solution>

@@ -1,0 +1,8 @@
+{
+  "name": "وسط البساطة - Wasat Elbasata",
+  "description": "مطعم وسط البساطة لفواكة اللحمة - اطلب أشهى المأكولات واللحوم والوجبات المصرية الأصيلة أونلاين مع تحديد الموقع والتوصيل السريع.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

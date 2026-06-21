@@ -1,0 +1,12 @@
+f:\Meno\El-bsata\ElBsata.Domain\bin\Debug\net10.0\ElBsata.Domain.deps.json
+f:\Meno\El-bsata\ElBsata.Domain\bin\Debug\net10.0\ElBsata.Domain.dll
+f:\Meno\El-bsata\ElBsata.Domain\bin\Debug\net10.0\ElBsata.Domain.pdb
+f:\Meno\El-bsata\ElBsata.Domain\obj\Debug\net10.0\ElBsata.Domain.csproj.AssemblyReference.cache
+f:\Meno\El-bsata\ElBsata.Domain\obj\Debug\net10.0\ElBsata.Domain.GeneratedMSBuildEditorConfig.editorconfig
+f:\Meno\El-bsata\ElBsata.Domain\obj\Debug\net10.0\ElBsata.Domain.AssemblyInfoInputs.cache
+f:\Meno\El-bsata\ElBsata.Domain\obj\Debug\net10.0\ElBsata.Domain.AssemblyInfo.cs
+f:\Meno\El-bsata\ElBsata.Domain\obj\Debug\net10.0\ElBsata.Domain.csproj.CoreCompileInputs.cache
+f:\Meno\El-bsata\ElBsata.Domain\obj\Debug\net10.0\ElBsata.Domain.dll
+f:\Meno\El-bsata\ElBsata.Domain\obj\Debug\net10.0\refint\ElBsata.Domain.dll
+f:\Meno\El-bsata\ElBsata.Domain\obj\Debug\net10.0\ElBsata.Domain.pdb
+f:\Meno\El-bsata\ElBsata.Domain\obj\Debug\net10.0\ref\ElBsata.Domain.dll
