@@ -39,6 +39,10 @@ public class SubmitOrderHandler : IRequestHandler<SubmitOrderCommand, SubmitOrde
         await _unitOfWork.Orders.AddAsync(newOrder, ct);
         await _unitOfWork.SaveChangesAsync(ct);
 
+        var itemsText = string.Join("\n", newOrder.Items.Select(i => $"- {i.Item.Name} x{i.Quantity} = {(i.Item.Price ?? 0) * i.Quantity} ج.م"));
+        var message = System.Net.WebUtility.UrlEncode($"طلب جديد #{orderId}\nالعميل: {newOrder.Customer.Name}\nالهاتف: {newOrder.Customer.Phone}\nالعنوان: {newOrder.Customer.Address}\n\nالمنتجات:\n{itemsText}\n\nالإجمالي: {newOrder.TotalPrice} ج.م");
+        var whatsappUrl = $"https://wa.me/201105188442?text={message}";
+
         return new SubmitOrderResult
         {
             Success = true,
@@ -46,7 +50,8 @@ public class SubmitOrderHandler : IRequestHandler<SubmitOrderCommand, SubmitOrde
             EmailSent = emailSent,
             IsMock = !emailSent,
             Order = newOrder,
-            Message = emailSent ? "\u062a\u0645 \u0627\u0644\u0625\u0631\u0633\u0627\u0644" : "\u062a\u0645 \u0627\u0644\u062D\u0641\u0638 (\u0645\u062D\u0627\u0643\u0627\u0629)"
+            Message = emailSent ? "\u062a\u0645 \u0627\u0644\u0625\u0631\u0633\u0627\u0644" : "\u062a\u0645 \u0627\u0644\u062D\u0641\u0638 (\u0645\u062D\u0627\u0643\u0627\u0629)",
+            WhatsAppUrl = whatsappUrl
         };
     }
 

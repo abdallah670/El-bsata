@@ -115,6 +115,10 @@ export class CartDrawerComponent {
     this.checkoutForm.isSubmitting = true;
     this.toastService.show('جاري إرسال وتأكيد الطلب عبر الخادم...', 'info');
 
+    // *** Open a blank tab NOW — synchronously, while still inside the user's click gesture ***
+    // Browsers block window.open() in async callbacks; this keeps it within the gesture chain.
+    const waWindow = window.open('about:blank', '_blank');
+
     this.orderService.submitOrder({
       customer,
       items: this.cartService.items().map(i => ({
@@ -127,18 +131,27 @@ export class CartDrawerComponent {
     }).subscribe({
       next: (res) => {
         if (res.success) {
-          this.toastService.show(res.message, 'success');
+          // Navigate the already-open blank tab to WhatsApp
+          const waUrl = res.whatsAppUrl || res.WhatsAppUrl;
+          if (waUrl && waWindow) {
+            waWindow.location.href = waUrl;
+          } else if (waWindow) {
+            waWindow.close(); // no URL — close blank tab
+          }
           this.cartService.clearCart();
           this.cartService.toggleCart(false);
           this.checkoutForm.resetForm();
+          this.toastService.show(res.message || 'تم إرسال الطلب بنجاح! ✅', 'success');
         } else {
+          if (waWindow) waWindow.close(); // close blank tab on failure
           this.toastService.show(res.error || 'حدث خطأ غير متوقع', 'error');
           this.checkoutForm.isSubmitting = false;
         }
       },
       error: (err) => {
+        if (waWindow) waWindow.close(); // close blank tab on error
         console.error(err);
-        this.toastService.show('تعذر الاتصال بالخادم.', 'error');
+        this.toastService.show('تعذر الاتصال بالخادم. تأكد أن السيرفر يعمل.', 'error');
         this.checkoutForm.isSubmitting = false;
       }
     });

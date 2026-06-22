@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using ElBsata.Application.Orders.Commands;
 using ElBsata.Application.Orders.DTOs;
 using ElBsata.Application.Orders.Queries;
@@ -28,6 +28,6 @@ public class OrdersController : ControllerBase
     {
         var result = await _mediator.Send(new SubmitOrderCommand(request));
         if (!result.Success) return BadRequest(new { error = result.Message });
-        return Ok(new { success = true, orderId = result.OrderId, emailSent = result.EmailSent, isMock = result.IsMock, message = result.Message, order = result.Order });
+        return Ok(new { success = true, orderId = result.OrderId, emailSent = result.EmailSent, isMock = result.IsMock, message = result.Message, whatsAppUrl = result.WhatsAppUrl, order = result.Order });
     }
 }

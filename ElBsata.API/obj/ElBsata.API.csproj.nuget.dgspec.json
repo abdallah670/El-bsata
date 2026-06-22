@@ -35,8 +35,8 @@
               "F:\\Meno\\El-bsata\\ElBsata.Application\\ElBsata.Application.csproj": {
                 "projectPath": "F:\\Meno\\El-bsata\\ElBsata.Application\\ElBsata.Application.csproj"
               },
-              "F:\\Meno\\El-bsata\\ElBsata.Infrastructure\\ElBsata.Infrastructure.csproj": {
-                "projectPath": "F:\\Meno\\El-bsata\\ElBsata.Infrastructure\\ElBsata.Infrastructure.csproj"
+              "f:\\Meno\\El-bsata\\ElBsata.Infrastructure\\ElBsata.Infrastructure.csproj": {
+                "projectPath": "f:\\Meno\\El-bsata\\ElBsata.Infrastructure\\ElBsata.Infrastructure.csproj"
               }
             }
           }
@@ -1227,14 +1227,14 @@
         }
       }
     },
-    "F:\\Meno\\El-bsata\\ElBsata.Infrastructure\\ElBsata.Infrastructure.csproj": {
+    "f:\\Meno\\El-bsata\\ElBsata.Infrastructure\\ElBsata.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Meno\\El-bsata\\ElBsata.Infrastructure\\ElBsata.Infrastructure.csproj",
+        "projectUniqueName": "f:\\Meno\\El-bsata\\ElBsata.Infrastructure\\ElBsata.Infrastructure.csproj",
         "projectName": "ElBsata.Infrastructure",
-        "projectPath": "F:\\Meno\\El-bsata\\ElBsata.Infrastructure\\ElBsata.Infrastructure.csproj",
+        "projectPath": "f:\\Meno\\El-bsata\\ElBsata.Infrastructure\\ElBsata.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "F:\\Meno\\El-bsata\\ElBsata.Infrastructure\\obj\\",
+        "outputPath": "f:\\Meno\\El-bsata\\ElBsata.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

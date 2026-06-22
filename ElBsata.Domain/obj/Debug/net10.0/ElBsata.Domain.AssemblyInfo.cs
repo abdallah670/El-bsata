@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ElBsata.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be50f402bdd7641cf84a90d074b26f6a43c36d30")]
 [assembly: System.Reflection.AssemblyProductAttribute("ElBsata.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ElBsata.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
