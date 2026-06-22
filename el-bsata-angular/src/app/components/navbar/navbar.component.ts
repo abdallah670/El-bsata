@@ -10,6 +10,7 @@ import { LucideAngularModule, Lock, LogOut } from 'lucide-angular';
     <nav class="navbar">
       <div class="container">
         <div class="navbar-left">
+          <img src="assets/logo.png" alt="البساطة" class="navbar-logo" />
           <span class="navbar-brand">البساطة</span>
           <span class="navbar-badge">لفواكة اللحمة </span>
         </div>
