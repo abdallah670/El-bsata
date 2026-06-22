@@ -98,7 +98,7 @@ import { OrderService } from '../../services/order.service';
               <iframe 
                 *ngIf="selectedOrder && !loadingDetails" 
                 class="email-preview" 
-                [srcdoc]="getSafeHtml(selectedOrder.emailLog || '')">
+                [srcdoc]="getEmailHtml(selectedOrder)">
               </iframe>
             </div>
           </div>
@@ -175,7 +175,45 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
     return `https://maps.google.com/?q=${c.latitude},${c.longitude}`;
   }
 
-  getSafeHtml(html: string): SafeHtml {
+  getEmailHtml(order: Order): any {
+    // If the backend already stored the email HTML, use it
+    if (order.emailLog && order.emailLog.trim().length > 10) {
+      return this.sanitizer.bypassSecurityTrustHtml(order.emailLog);
+    }
+
+    // Fallback: build a clean summary table from the order data
+    const itemsHtml = (order.items || []).map((i: any) => {
+      const name = i.item?.name || i.productName || '';
+      const qty = i.quantity || 1;
+      const price = (i.item?.price || i.price || 0) * qty;
+      return `<tr>
+        <td style="padding:8px;border-bottom:1px solid #eee;">${name}</td>
+        <td style="padding:8px;border-bottom:1px solid #eee;text-align:center;">${qty}</td>
+        <td style="padding:8px;border-bottom:1px solid #eee;text-align:left;">${price} ج.م</td>
+      </tr>`;
+    }).join('');
+
+    const html = `<html><body style="font-family:Arial,sans-serif;direction:rtl;padding:16px;">
+      <h2 style="color:#b8863a;">طلب جديد #${order.id}</h2>
+      <p><strong>العميل:</strong> ${order.customer?.name || ''}</p>
+      <p><strong>الهاتف:</strong> ${order.customer?.phone || ''}</p>
+      <p><strong>العنوان:</strong> ${order.customer?.address || ''}</p>
+      <hr/>
+      <table style="width:100%;border-collapse:collapse;">
+        <thead><tr style="background:#f5f5f5;">
+          <th style="padding:8px;text-align:right;">المنتج</th>
+          <th style="padding:8px;text-align:center;">الكمية</th>
+          <th style="padding:8px;text-align:left;">السعر</th>
+        </tr></thead>
+        <tbody>${itemsHtml || '<tr><td colspan="3" style="padding:8px;color:#999;">لا توجد تفاصيل الأصناف</td></tr>'}</tbody>
+      </table>
+      <h3 style="text-align:left;color:#b8863a;">الإجمالي: ${order.totalPrice} ج.م</h3>
+    </body></html>`;
+
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
+
+  getSafeHtml(html: string): any {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 }

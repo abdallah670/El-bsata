@@ -36,7 +36,9 @@ public class GetOrderDetailsHandler : IRequestHandler<GetOrderDetailsQuery, Orde
                 Quantity = i.Quantity
             }).ToList(),
             TotalPrice = order.TotalPrice,
-            CreatedAt = order.CreatedAt
+            CreatedAt = order.CreatedAt,
+            Status = order.Status.ToString(),
+            EmailLog = order.EmailLog   // ← was missing, caused blank preview
         } : null;
     }
 }
