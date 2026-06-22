@@ -1,2 +1,2 @@
-/api/*  https://elbsata-api.monsterasp.net/api/:splat  200
+/api/*  https://elbsata.runasp.net/api/:splat  200
 /*      /index.html   200

@@ -67,10 +67,18 @@ builder.Services.AddSwaggerGen(c =>
 // ─── CORS ────────────────────────────────────────────────────────────────────
 builder.Services.AddCors(opt =>
 {
+    // Development
     opt.AddPolicy("AngularDev", policy =>
         policy.WithOrigins("http://localhost:4200", "http://localhost:4000")
               .AllowAnyHeader()
               .AllowAnyMethod());
+
+    // Production — Netlify frontend
+    opt.AddPolicy("Netlify", policy =>
+        policy.WithOrigins("https://el-bsata.netlify.app")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials());
 });
 
 var app = builder.Build();
@@ -94,7 +102,15 @@ app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "وسط ال
 
 app.UseStaticFiles(); // Serve images from wwwroot
 
-app.UseCors("AngularDev");
+// Use appropriate CORS policy based on environment
+if (app.Environment.IsDevelopment())
+{
+    app.UseCors("AngularDev");
+}
+else
+{
+    app.UseCors("Netlify");
+}
 
 app.UseAuthentication();
 app.UseAuthorization();

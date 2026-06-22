@@ -9,7 +9,7 @@
 # Redirect API calls to MonsterASP backend
 [[redirects]]
   from = "/api/*"
-  to = "https://elbsata-api.monsterasp.net/api/:splat"
+  to = "https://elbsata.runasp.net/api/:splat"
   status = 200
   force = true
 
