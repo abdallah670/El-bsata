@@ -57,6 +57,7 @@ body {
   display: flex; align-items: center;
 }
 .navbar .container { display: flex; align-items: center; }
+.navbar-logo { height: 2.2rem; width: 2.2rem; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold-main); }
 .navbar-left { display: flex; align-items: center; gap: 0.5rem; }
 .navbar-brand { font-size: 1.35rem; font-weight: 900; color: var(--gold-light); letter-spacing: -0.02em; }
 .navbar-badge {
