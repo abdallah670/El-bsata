@@ -180,30 +180,37 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Listen to auth state
+    // Listen to auth state — load order count IMMEDIATELY when login state changes
     this.authService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isAdminLoggedIn = isLoggedIn;
+      if (isLoggedIn) {
+        this.refreshOrderCount();
+      } else {
+        this.ordersCount = 0;
+      }
     });
 
     // Load Menu from .NET API
     this.menuService.getCategories().subscribe(res => this.categories = res);
     this.menuService.getItems().subscribe(res => this.items = res);
 
-    // Poll orders count for admin badge if logged in or generally
+    // Also poll every 10s to keep count fresh
     setInterval(() => {
       if (this.isAdminLoggedIn) {
-        this.orderService.getOrders().subscribe({
-          next: (orders) => this.ordersCount = orders.length,
-          error: (err) => {
-            if (err.status === 401) {
-              this.logout();
-            }
-          }
-        });
-      } else {
-        this.ordersCount = 0;
+        this.refreshOrderCount();
       }
     }, 10000);
+  }
+
+  refreshOrderCount() {
+    this.orderService.getOrders().subscribe({
+      next: (orders) => this.ordersCount = orders.length,
+      error: (err) => {
+        if (err.status === 401) {
+          this.logout();
+        }
+      }
+    });
   }
 
   logout() {

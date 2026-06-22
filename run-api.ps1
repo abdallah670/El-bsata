@@ -1,6 +1,0 @@
-$env:SMTP_USER = "hnbg14006@gmail.com"
-$env:SMTP_PASS = "vlkk jmat ouli zbgs"
-$env:SMTP_HOST = "smtp.gmail.com"
-$env:SMTP_PORT = "587"
-$env:SMTP_RECIPIENT = "hnbg14006@gmail.com"
-dotnet run --project "F:\Meno\El-bsata\ElBsata.API\ElBsata.API.csproj"

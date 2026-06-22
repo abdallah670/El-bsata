@@ -10,4 +10,5 @@ public class SubmitOrderResult
     public bool IsMock { get; set; }
     public string Message { get; set; } = string.Empty;
     public Domain.Entities.Order? Order { get; set; }
+    public string? WhatsAppUrl { get; set; }
 }
